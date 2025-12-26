@@ -46,6 +46,26 @@ public class ChessBoardGenerator : MonoBehaviour
            }
        }
 
+       public string GetSlot(int x, int y)
+       {
+           return _boardSlots[x, y].name;
+       }
+       public GameObject GetCurrentSlot(Transform slot,int count)
+       {
+           Debug.Log(count);
+           for (int y = 0; y < BOARD_SIZE; y++)
+           {
+               for (int x = 0; x < BOARD_SIZE; x++)
+               {
+                   if (_boardSlots[x,y].name == slot.name)
+                   {
+                       return _boardSlots[x,y+count];
+                   }
+               }
+               
+           }
+           return _boardSlots[0, 0];
+       }
        public void StartGenerateFigure()
        {
            for (int x = 0; x < BOARD_SIZE; x++)

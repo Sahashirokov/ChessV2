@@ -11,11 +11,13 @@ public class GameController : MonoBehaviour
 
     public bool CanMove(Figure figure, Cell targetCell)
     {
+      // figure.GetFigure();
         return true;
     }
 
     public void OnFigureDropped(Figure figure, Cell cell)
     {
+        
         if (CanMove(figure, cell))
         {
             figure.MoveTo(cell.transform);

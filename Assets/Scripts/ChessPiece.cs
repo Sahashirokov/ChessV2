@@ -13,7 +13,7 @@ public class ChessPiece : MonoBehaviour
     void Awake()
     {
         enabled = true;
-        // if (_image == null)
+        // if (_image == null) 
         //     _image = GetComponent<Image>(); // ищет Image на том же объекте
     }
     public void Init(

@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6287c5a8c296f4fb5d1f88eff933b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _knobprefab: {fileID: 1388880233664647670, guid: 382393abbb7e27d4a92e47b7214242c5, type: 3}
 --- !u!225 &3092006984642823023
 CanvasGroup:
   m_ObjectHideFlags: 0

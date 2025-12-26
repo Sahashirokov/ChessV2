@@ -4,24 +4,30 @@ using UnityEngine.UI;
 
 public class Cell : MonoBehaviour,IDropHandler
 {
+    [SerializeField] private GameObject _knobprefab;
+    
     void Awake()
     {
         this.enabled = true;
         GetComponent<GridLayoutGroup>().enabled = true;
+        transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
     }
     public void OnDrop(PointerEventData eventData)
     { 
-        Debug.Log("OnDrop");
-        
         var figure = eventData.pointerDrag?.GetComponent<Figure>();
         if (figure == null) return;
         GameController.Instance.OnFigureDropped(figure, this);
-        // GameObject dropped = eventData.pointerDrag;
-        // Figure figure = dropped.GetComponent<Figure>();
-        // figure._startItem = transform;
-         // var otherItemTransform = eventData.pointerDrag.transform;
-         // otherItemTransform.SetParent(transform);
-         // otherItemTransform.localPosition = Vector3.zero;
     }
-    
+
+    public void Hightlight()
+    {
+        Debug.Log($"name Cell:{name}");
+      
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    public void HideHightlight()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
 }

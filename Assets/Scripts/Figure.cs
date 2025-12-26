@@ -12,9 +12,10 @@ public class Figure : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDragHandl
     private Transform _startItem;
     private Transform _targetCell;
     private CanvasGroup _canvasGroup;
+   private GameObject _cacheprefab;
     void Awake()
     {
-        this.enabled = true;
+       enabled = true;
     }
     public void MoveTo(Transform cell)
     {
@@ -44,6 +45,7 @@ public class Figure : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDragHandl
         transform.SetParent(_mainCanvas.transform);
         transform.SetAsLastSibling();
         _canvasGroup.blocksRaycasts = false;
+        GetFigure();
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -57,6 +59,18 @@ public class Figure : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDragHandl
         transform.SetParent(finalParent);
         _rectTransform.localPosition = Vector3.zero;
        _canvasGroup.blocksRaycasts = true;
+       _cacheprefab.GetComponent<Cell>().HideHightlight();
     }
     
+    public void GetFigure()
+    {
+       var color = GetComponent<ChessPiece>().Color;
+       var type= GetComponent<ChessPiece>().Type;
+       int dir = color == PieceColor.White ? -1:1;
+       
+     //получили объект
+         _cacheprefab = _startItem.GetComponentInParent<ChessBoardGenerator>().GetCurrentSlot(_startItem,dir);
+     _cacheprefab.GetComponent<Cell>().Hightlight();
+         Debug.Log($" GameObject name Cell:{_cacheprefab.name}");
+    }
 }
